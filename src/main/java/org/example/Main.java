@@ -22,3 +22,28 @@ public class Main {
         
     }
 }
+
+
+//Pipeline Script:
+
+pipeline{
+    agent any
+    tools{
+        maven 'Maven3'
+    }
+    stages{
+        stage('Checkout'){
+            steps{
+                git branch :'main',
+                url :'https://github.com/janani-afk/Leap'
+            }
+        }
+        stage('Build and Test'){
+            steps{
+                sh 'mvn clean test'
+            }
+        }
+        
+    }
+        
+}
